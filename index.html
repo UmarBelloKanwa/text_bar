@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+   <head>
+      <title> Text Bar </title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+      <meta name="description" content="Text bar-Note lists" />
+      <meta name="keywords" content="HTML, CSS, JavaScript" />
+      <meta name="author" content="Umar BK" >
+      <script type="module" src="script/index.js" defer></script>
+      <script src="script/navs.js" defer></script>
+      <style>
+      * 
+      { box-sizing:border-box;}
+      html, body
+      { margin: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: #333;}
+      section
+      { margin-top: 2em;
+        padding-bottom:111px;}
+      section input
+      { width:96%;
+        height:3em;
+        margin: auto 2%;
+        border-radius: .5em;
+        border: solid #333;
+        padding-left: 3%;
+        font-size: large;
+        position: sticky;
+        top:0;
+        z-index: 5;
+        background-color: grey;}
+      input, input[type=search]::placeholder
+      { color: #333;}
+      section div[title=note-lists]
+      { margin: 1em 1% 0;}
+      div[title=note-lists] div
+      { width: 100%;
+        display: grid;
+        margin-bottom: 7px;
+        position: relative;
+        border-radius: 1em;
+        border: solid grey;
+        background-color: gray;
+        padding: 2%;}
+      section div h1, section div p
+      { margin: 0;
+        width:100%;
+        height: 15px;
+        overflow: hidden;}
+      section div h1
+      { height:27px;}
+      section div span
+      { margin-top:10px;}
+      div[title=note-lists] div img
+      { width: 20%;
+        height: 90%;
+        position: absolute;
+        top: 5%;
+        right: 1%;
+        border-radius: 1em;}
+      div#no-note
+      { display: grid;
+        place-items: center;
+        margin-top: -120px;
+        position: relative;}
+      div#no-note img
+      { width: 100%;
+        margin-top: -5em;
+        height: 500px;}
+      div#no-note span
+      { position: absolute;
+        top: 0%;
+        background-color: black;
+        padding:1%;
+        border-radius: 1em;
+        color: white;
+        font-family: monospace;
+        font-size: 3vh;}
+      footer
+      { position: fixed;
+        bottom: 0;
+        width: 95%;
+        color: white;}
+      footer > img:first-child
+      { position: absolute;
+        bottom: 50%;
+        width :15%;
+        height: 8vh;
+        z-index: 5;
+        margin:auto 42.5% 7%;
+        border-radius: 1em;
+        border: solid grey;
+        box-shadow: 10px 10px 5px rgba(0, 0, 0, .5),
+        0 0 5px 5px rgb(255, 255, 255);}
+      @media screen and (min-width:700px){
+        div#no-note img
+        { width: 50%;}
+        section div[title=note-lists]
+        { display: grid; 
+          grid-template-columns: 33% 33% 33%;
+          grid-column-gap:7px ;}
+        div#no-note span
+        { top:75%;}
+        footer 
+        { width:100%}
+        footer > img:first-child
+        { width: 5%;
+          margin:auto 47.5% 3%;
+          border-radius: 35%;}
+      }
+      </style>
+  </head>
+  <body> 
+     <header> </header>
+     <section title="note-parent" >
+        <input type="search" placeholder="Search your notes..." >
+        <div title="note-lists" > </div>
+     </section>
+     <div id="no-note" >
+        <img src="photos/no-note.png" >
+        <span> Tap + to create a note </span>
+     </div>
+     <footer>
+        <img src="photos/plus-new-note.png">
+        <nav> </nav>
+    </footer>
+  </body>
+</html>

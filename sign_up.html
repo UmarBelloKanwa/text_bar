@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+   <head>
+      <title>Sign up to Text Bar </title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+      <meta name="description" content="Text Bar Log in form" />
+      <meta name="keywords" content="HTML, CSS, JavaScript" />
+      <meta name="author" content="Umar BK" >
+      <script src='navs.js' defer></script>
+      <style>
+      * 
+      { box-sizing:border-box;}
+      html
+      { background-color:#333; }	
+      body
+      { margin-top:0;}
+      img.person
+      { width:35%;
+        height:150px;
+        margin:15px 32.5% 0;}
+      form
+      { color:white;
+        z-index: -1;
+        display:block;
+        border:1px solid rgba(255, 255, 255, .1);
+        border-radius:1vw;
+        animation:form 5s infinite;
+        background-color:rgba(0, 0, 0, .1);
+        margin:-40px 5% 5em;}
+      @keyframes form {
+        50% 
+        { box-shadow: 10px 20px 30px rgba(255, 255, 255, .5);}
+      }
+      form h1
+      { padding:3%;
+        text-align:center;
+        font-size:2em;}
+      form input, label, select
+      { margin:0 13%;
+        width:74%;
+        display:block;
+        font-weight:bold;}
+      form input, select
+      { padding:3% 5%;
+        border:none;
+        outline:none;
+        border-radius:1vw;
+        font-size:1em;
+        margin-bottom:1em;
+        background-color:rgba(255, 255, 255, .1);}
+      form select
+      { color:rgba(255, 255, 255, .8);}
+      form div
+      { margin:-1em 13%;
+        width:74%;
+        font-size:1.5vh;
+        color:orangered;}
+      input[type=button]
+      { margin:2em 13% 1em;
+        font-weight:bold;
+        padding:.5em;
+        background-color:white;}	
+      h3
+      { text-align:center;
+        color: white; }
+      @media screen and (min-width:600px) {
+         img.person
+         { height:200px;
+           width: 20%;
+           margin: 0 40%;}
+         form 
+         { width: 400px;
+           margin:-50px auto;}
+      }
+      </style>
+   </head>
+   <body>
+      <header> 
+      </header>
+      <img src="photos/person.png" class="person" >
+      <form> 
+         <h1> Sign up </h1>
+         <label> Username </label>
+         <input type="text" placeholder="From 4 to 15 letters are allowed" oninput="input_name()">
+         <label> PIN </label>
+         <input type="number" placeholder="only 4 numbers are allowed" oninput="input_pin()">
+         <label> Choose Security Question </label>
+         <select oninput="choose_question()">
+            <option> What is your favourite color ? </option>
+            <option> What is your mother name ? </option>
+            <option> Name of your girlfreind is ? </option>
+            <option> Your first school name is ? </option>
+            <option> Your favourite food is ? </option>
+            <option> Your first phone number is ? </option>
+            <option> Your Secondary school name is ? </option>
+         </select>
+         <label> Answer </label>
+         <input type="text" placeholder="Write the answer here" oninput="input_forgotten_answer()">
+         <div> Dont it to be less than 3 or greater than 15 characters. </div>
+         <input type="button" value="Sign up"  onclick="sign_up()">
+      </form>
+      <script>
+      (() => {
+        if (localStorage.getItem('USER_DATA')) {
+           location.href = 'log_in.html';
+        } 
+      })(); 
+      let name = document.getElementsByTagName('input')[0];
+      let pin = document.getElementsByTagName('input')[1];
+      let forgotten_question = document.querySelector('select');
+      let answer = document.getElementsByTagName('input')[2];
+      function input_name() {
+        if (!name.value.match((/^[A-Za-z][A-Za-z\s]{3,14}$/))) {
+          name.style.color = 'orangered';
+          return false;
+        } else {
+          name.style.color = 'rgba(255, 255, 255, .7)';
+          return true;
+        }
+      }
+      function input_pin() {
+        if (!pin.value.match(/^[0-9]{4}$/)) {
+          pin.type = 'text';
+          pin.style.color = 'orangered';
+          return false;
+        } else {
+          pin.type = 'password';
+          pin.style.color = 'rgba(255, 255, 255, .7)';
+          return true;
+        }
+      }
+      function choose_question() {
+        answer.placeholder = forgotten_question.value; 
+        answer.value = null; 
+      }
+      function input_forgotten_answer() {
+        if (!answer.value.match(/^[A-Za-z0-9][A-Za-z0-9\s]{2,14}$/)) {
+          answer.style.color = 'orangered'; 
+          return false;
+        } else {
+          answer.style.color = 'rgba(255, 255, 255, .7)';  
+          answer.style.backgroundColor = answer.value;
+          return true;
+        }
+      }
+      function sign_up() {
+        if (input_name() && input_pin() && input_forgotten_answer()) {
+          let user_data = {
+            'NAME' : name.value,
+            'PIN' : pin.value,
+            'FORGOTTEN QUESTION' : forgotten_question.value,
+            'QUESTION ANSWER' : answer.value
+          };
+          localStorage.setItem('USER_DATA', JSON.stringify(user_data));
+          window.location.assign('log_in.html');
+        }
+      }
+      </script>
+   </body>
+</html>

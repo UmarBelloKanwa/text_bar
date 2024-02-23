@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en-NG">
+   <head>
+      <title> Note - Text Bar </title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+      <meta name="description" content="Text Bar Note Page" />
+      <meta name="keywords" content="HTML, CSS, JavaScript" />
+      <meta name="author" content="Umar BK" >
+      <script src="script/tools.js" defer> </script>
+      <script type="module" src="script/controller.js" defer> </script> 
+      <link rel="stylesheet" href="style/note.css" >
+  </head>
+  <body>
+     <header> 
+        <img src="photos/back.png" id="save">
+        <div style="display:grid;" >
+           <h2> Note </h2>
+           <span id="date" style="font-size:.9em;"> </span>
+        </div>
+     </header>
+     <article> 
+        <textarea id="title" placeholder="Title" name="title"></textarea>
+        <textarea id="content-texts" placeholder="Note something down" name="text" height="auto" ></textarea>
+        <section id="content-imgs"> </section>
+     </article>
+     <section id="tools" hidden="hidden" > </section> 
+     <nav> 
+        <div> 
+            <img src="photos/add-img.png" >
+            <input type="file" accept="image/*" multiple="multiple"  >
+            <span> Photos </span>
+        </div>
+        <div id="listen-icon" > 
+           <img src="photos/listen.png" >
+           <span> Listen </span>
+        </div>
+        <div id="speech-icon"> 
+           <img src="photos/speaker.png" >
+           <span id="hearing"> Speech </span>
+        </div>
+        <div id="show-tools"> 
+           <img src="photos/tools.png" >
+           <span> More </span>
+        </div>
+     </nav>
+  </body>
+</html>

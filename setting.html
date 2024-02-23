@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+   <head>
+      <title> Text Bar Setting Page </title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+      <meta name="description" content="Text Bar Profile Page" />
+      <meta name="keywords" content="HTML, CSS, JavaScript" />
+      <meta name="author" content="Umar BK" >
+      <script src='script/navs.js' defer></script>
+      <style>
+      * 
+      { box-sizing:border-box;}
+      html
+      { background-color:#333; }	
+      body
+      { margin:0;
+        color:white;}
+      header 
+      { width:95%;
+        position: fixed;
+        top:0;}
+      .head
+      { margin:1.5em .5em 1em;}
+      section
+      { background-color:grey;
+        margin: 0 1em;
+        padding: 1em;
+        border-radius: 1em;}
+      section div, section p
+      { margin: 1em;
+        background-color:#333;
+        padding: 1em;
+        border-radius: 1em;
+        display: grid;
+        grid-template-columns: 80% 20%;}
+      section div input
+      { width: 100%;
+        height: 100%;
+        accent-color:grey ;}
+      div input[type=color]
+      { width: 3em;
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        margin: auto;}
+      article
+      { text-align: center;
+        margin-bottom: 10em;}
+      article h1
+      { margin: 0;}
+      article p
+      { text-align: left;}
+      p a
+      { text-decoration: none;
+        color: white;}
+      @media screen and (min-width:700px){ 
+         .head
+         { margin-left: 20%;}
+         section
+         { margin: auto 25%;}
+      }
+      </style>
+   </head>
+   <body>
+      <header> </header>
+      <h1 class="head">Home Setting </h1>
+      <section>
+        <div>
+           <span> Grid View</span> <input type="checkbox" name="grid">
+        </div>
+        <div>
+           <span> Black Mode</span> <input type="checkbox" name="light">
+        </div>
+        <div>
+         <span> Customize Background </span> <input type="color" value="#333333" name="background">
+        </div>
+      </section>
+      <h1 class="head"> About </h1>
+      <article>
+         <section> 
+            <h1> Text Bar </h1>
+            <p> Version : 1.10 </p>
+            <p> Developed : 2023 </p>
+            <p> Released : Sun, Nov 19 </p>
+            <p> Developed by : Umar Bello Kanwa </p>
+            <p> <a href="umarbellokanwa@gmail.com"> Contact us : Umarbellokanwa@gmail.com</a></p>
+         </section>
+      </article>
+      <nav> </nav>
+      <script>
+         (() => {
+         if (!localStorage.getItem('USER_DATA')) {
+            location.href = 'sign_up.html';
+         } 
+         })(); 
+         class Setting {
+            constructor() {
+               this.settingData = {
+                  gridView : '',
+                  blackMode : '',
+                  backgroundColor : ''
+               };
+               this.grid_box = document.querySelector('[name=grid]');
+               this.black_box = document.querySelector('[name=light]');
+               this.background_input = document.querySelector('[name=background]');
+            }
+            handleEvents() {
+               this.load();
+               this.grid_box.addEventListener('change', (e) => this.gridView(e.target));
+               this.black_box.addEventListener('change', (e) => this.blackMode(e.target));
+               this.background_input.addEventListener('change', (e) => this.customizeBackground(e.target));
+            }
+            gridView(input) {
+               this.settingData.gridView = input.checked ? 'YES' : '';
+               this.update();
+            }
+            blackMode(input) {
+               this.settingData.blackMode = input.checked ? 'YES' : '';
+               this.settingData.backgroundColor = input.checked ? '#000000' : '#333333' ;
+               this.update();
+            }
+            customizeBackground(input) {
+               this.settingData.backgroundColor = input.value;
+               this.black_box.checked = false;
+               this.update();
+            }
+            update(settingData) {
+               localStorage.setItem('setting', JSON.stringify(this.settingData));
+               this.load();
+            }
+            load() {
+               let setting = JSON.parse(localStorage.getItem('setting'));
+               if (setting) {
+                 this.settingData = setting;
+                 if (this.settingData.gridView != '') {
+                    this.grid_box.checked = true;
+                 } else {
+                   this.grid_box.checked = true;
+                 }
+                 if (this.settingData.blackMode != '') {
+                   this.black_box.checked = true;
+                 }
+                 if (this.settingData.backgroundColor != '') {
+                   this.background_input.value = this.settingData.backgroundColor;
+                 }
+              }
+          }
+         }
+         const setting = new Setting();
+         setting.handleEvents();
+      </script>
+   </body>
+</html>
+ 

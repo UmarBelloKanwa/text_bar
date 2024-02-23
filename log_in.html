@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-NG">
+   <head>
+      <title>Log in to Text Bar </title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+      <meta name="description" content="Text Bar Log in form" />
+      <meta name="keywords" content="HTML, CSS, JavaScript" />
+      <meta name="author" content="Umar BK" >
+      <script src='script/navs.js' defer></script>
+      <style>
+      * 
+      { box-sizing:border-box;}
+      html
+      { background-color:#333; }	
+      body
+      { margin-top:0;}
+      form
+      { margin:3em 0 0;
+        position:relative;}
+      form input
+      { margin:0 35%;
+        width:30%;
+        border:none;
+        border-bottom:2px solid white;
+        color:white;
+        font-size:3em;
+        text-align:center;
+        background:#333;
+        outline:none;}
+      form button
+      { position:absolute;
+        top:0;
+        right:21%;
+        padding:0 1%;
+        border-radius:5vw;
+        background-color:black;
+        font-size:xx-large;
+        color:white;}
+      form div
+      { margin:11px 25% 0;
+        color:white;}
+      table 
+      { margin:5em 0 0;
+        width:100%;
+        color:white;}
+      table tr
+      { text-align:center;}
+      table td
+      { background-color:rgba(0, 0, 0, .1);
+        font-size:3em;
+        padding:5%;}
+      @media screen and (min-width:600px) {
+        table 
+        { width: 300px;
+          margin:35px auto 0;
+          border-radius: 1em;
+          background-color: rgba(255, 255, 255, .1);}
+        
+      }
+      </style>
+   </head>
+   <body>
+      <header>  </header> 
+      <form> 
+         <input type="password" placeholder="PIN" disabled="disabled" >
+         <button type="button"  onclick="log.delete_number()"> × </button>
+         <div onclick="document.location='forgot_password.html'"> Forgot PIN </div>
+      </form>
+      <table>
+         <tr>
+            <td> 1 </td>
+            <td> 2 </td>
+            <td> 3 </td>
+         </tr>
+         <tr>
+            <td> 4 </td>
+            <td> 5 </td>
+            <td> 6 </td>
+         </tr>
+         <tr>
+            <td> 7 </td>
+            <td> 8 </td>
+            <td> 9 </td>
+         </tr>
+         <tr>
+            <td> </td>
+            <td> 0 </td>
+            <td> </td>
+         </tr>
+      </table>
+      <script>
+      (() => {
+        if (!localStorage.getItem('USER_DATA')) {
+           location.href = 'sign_up.html';
+        } 
+      })(); 
+      class sign_in {
+        constructor(password, remove_num, user_data) {
+          this.password = password;
+          this.delete_button = remove_num;
+          this.data = user_data;
+        }
+        delete_number() {
+          this.password.value = this.password.value.slice(0, -1);
+        }
+        log_in(number) {
+          let input = number.target.innerText;
+          this.password.value += input;
+          this.password.value == this.data['PIN'] ? document.location = 'index.html' : ''; 
+          this.password.value.length >= 4 ? this.password.value = '' : null;
+        }
+      }
+      const log = new sign_in(
+        document.querySelector('input[type=password]'),
+        document.querySelector('button'),
+        JSON.parse(localStorage.getItem('USER_DATA'))
+      );
+      document.querySelectorAll('td').forEach(button => button.addEventListener('click', () => log.log_in(event)));
+      </script>
+   </body>
+</html> 
