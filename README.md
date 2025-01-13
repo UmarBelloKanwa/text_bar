@@ -1,5 +1,7 @@
 # Note-Taking App README
 
+https://umarbellokanwa.github.io/text_bar
+
 ## Introduction
 Excited to announce that my **Note-Taking App** is now available on GitHub! This app offers a seamless way to store and manage your notes, supporting both text and images. Built with simplicity and functionality in mind, it helps users stay organized while providing various customization options.
 
